@@ -80,10 +80,16 @@ export default {
             });
           });
            if (res.code==0) {
+             let admin= res.data.admin
+            let userInfo=Object.assign({},admin);
+            userInfo.id=admin.user_id;
+            userInfo.mobilePhone=admin.mobile;
+            userInfo.mobilePhone=admin.mobile;
             Cookies.set("user", res.data.admin.username, { expires: 7 });
-            Cookies.set("userInfo", res.data.admin, { expires: 7 });
+            Cookies.set("userInfo", userInfo, { expires: 7 });
             setStore("leftSidebarList",permissions);
             this.$router.push({ name: "home_index" });
+              window.location.reload(); 
           } else this.$Message.error(res.msg);
         })
         .catch(err => {

@@ -15,10 +15,13 @@ import Cookies from 'js-cookie';
 import Viser from 'viser-vue';
 import { setStore, getStore, removeStore } from "@/config/storage.js";
 import base from '@/libs/base'
-
+import '../static/UE/ueditor.config.js'
+import '../static/UE/ueditor.all.min.js'
+import '../static/UE/lang/zh-cn/zh-cn.js'
+import '../static/UE/ueditor.parse.min.js'
 Vue.prototype.$ajax = axios;
-axios.defaults.withCredentials = true;
-axios.interceptors.response.use((response) => {
+//  axios.defaults.withCredentials = true;
+  axios.interceptors.response.use((response) => {
   const data = response.data
   let baseURL = response.config.baseURL;
   let url = response.config.url;
@@ -35,11 +38,10 @@ axios.interceptors.response.use((response) => {
   return response;
 })
 
-// axios.interceptors.request.use((config) => {
-//   config.headers['x-auth-token'] = Cookies.get('x-auth-token');
-//   return config;
-// })
-
+axios.interceptors.request.use((config) => {
+  config.headers['Content-Type'] = "application/x-www-form-urlencoded;charset=UTF-8"
+  return config;
+})
 Vue.prototype.api = Api;
 Vue.use(VueI18n);
 Vue.use(iView);

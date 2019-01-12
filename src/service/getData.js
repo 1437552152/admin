@@ -8,8 +8,90 @@ import {
 } from './http.js'
 
 export const BASICURL = BASEURL;
-// export const uploadPic = data => post('', data);
+//post登陆接口
 export const Login = data => post('admin/login', data);
+//post "用户管理" => "用户详情"
+export const employeeDetail = data => post('admin/system/employee/detail', data);
+//post "个人中心" => "修改密码"
+export const fixPersonalPW = data => post('admin/system/employee/update-password', data);
+
+// 案例列表
+export const team = data => post('/admin/team', data);
+//案例详情
+export const teamdetail = data => post('/admin/team/detail', data);
+//案例修改
+export const teamdeupdate = data => post('/admin/team/update', data);
+//学生删除
+export const teamdelete = data => post('/admin/team/delete', data);
+//案例增加
+export const teamdeadd = data => post('/admin/team/add', data);
+//countryconfig列表
+export const countryconfiglist = data => post('/admin/countryconfig', data);
+//countryconfig增加
+export const countryconfigadd = data => post('/admin/countryconfig/add', data);
+//countryconfig删除
+export const countryconfigdelete = data => post('/admin/countryconfig/delete', data);
+//countryconfig修改
+export const countryconfigUpdate = data => post('/admin/countryconfig/update', data);
+//countryconfig详情
+export const countryconfigdetail = data => post('/admin/countryconfig/detail', data);
+//文章列表
+export const newslist = data => post('/admin/news', data);
+//文章详情
+export const newsdetail = data => post('/admin/news/detail', data);
+//文章增加
+export const newsadd = data => post('/admin/news/add', data);
+//文章删除
+export const newsdelete = data => post('/admin/news/delete', data);
+//文章修改
+export const newsUpdate = data => post('/admin/news/update', data);
+//公司简介
+export const companylist = data => post('/admin/company', data);
+//删除
+export const companydelete = data => post('/admin/company/delete', data);
+//公司详情
+export const companydetail = data => post('/admin/company/detail', data);
+//公司修改
+export const companyupdate = data => post('/admin/company/update', data);
+//公司增加
+export const companyadd = data => post('/admin/company/add', data);
+// 报名列表
+export const reportlist = data => post('/admin/reportlist/reportlist', data);
+//删除
+export const reportdelete = data => post('/admin/reportlist/delete', data);
+//留言列表
+export const messagelist = data => post('/admin/submit/messagelist', data);
+//查看某一条留言
+export const messagedetail = data => post('/admin/submit/messagedetail', data);
+//删除留言
+export const messagedelete = data => post('/admin/submit/messagedelete', data);
+//留言回复
+export const messageupdate = data => post('/admin/submit/messageupdate', data);
+// 获取国家接口
+export const country = data => post('/admin/country');
+// 著名学校列表
+export const schoolList = data => post('/admin/schoolList', data);
+//学校删除
+export const schooldelete = data => post('/admin/schooldelete', data);
+// 学校增加
+export const schoolAdd = data => post('/admin/school/add', data);
+//学校修改
+export const schoolUpdate = data => post('/admin/school/update', data);
+//查看某一个学校的详情
+export const schooldetail = data => post('/admin/school/detail', data);
+//套餐列表
+export const priceList = data => post('/admin/priceList', data);
+//套餐删除
+export const pricedelete = data => post('/admin/price/delete', data);
+//套餐增加
+export const priceadd = data => post('/admin/price/add', data);
+//套餐修改
+export const priceUpdate= data => post('/admin/price/update', data);
+//套餐详情
+export const pricedetail= data => post('/admin/price/detail', data);
+
+
+
 
 
 
@@ -254,8 +336,6 @@ export const queryEmployee = data => post('admin/system/employee/page-query', da
 //post "用户管理" => "新增或者修改用户"
 export const addAuditEmployee = data => post('admin/system/employee/merge', data);
 
-//post "用户管理" => "用户详情"
-export const employeeDetail = data => post('admin/system/employee/detail', data);
 
 //post "用户管理" => "删除用户"
 export const delEmployee = data => post('admin/system/employee/deletes', data);
@@ -272,8 +352,6 @@ export const unlockWallet = data => post('admin/member/member-wallet/unlock-wall
 //post "币币管理" => "委托管理"=>"撤销"
 export const cancelOrder = data => post('admin/exchange/exchange-order/cancel', data);
 
-//post "个人中心" => "修改密码"
-export const fixPersonalPW = data => post('admin/system/employee/update-password', data);
 
 //post "系统管理" => "系统日志"
 export const accessLog = (url, data) => fetch(`admin/system/access-log/page-query/${url}`, data);

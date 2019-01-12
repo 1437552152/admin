@@ -77,7 +77,31 @@ export const otherRouter = {
       title: '个人中心',
       name: 'user:PersonalCenter',
       component: resolve => {
-        require(['@/views/html/user/PersonalCenter.vue'], resolve)
+        require(['@/views/user/PersonalCenter.vue'], resolve)
+      }
+    },
+    {
+      path: 'teamdetail',
+      title: '优秀案例详情',
+      name: 'teamdetail',
+      component: resolve => {
+        require(['@/views/argu-page/teamdetail.vue'], resolve)
+      }
+    },
+    {
+      path: 'user/personalCenter',
+      title: '公司概况',
+      name: 'user:PersonalCenter',
+      component: resolve => {
+        require(['@/views/user/PersonalCenter.vue'], resolve)
+      }
+    },
+    {
+      path: 'user/personalCenter',
+      title: '文章',
+      name: 'user:PersonalCenter',
+      component: resolve => {
+        require(['@/views/user/PersonalCenter.vue'], resolve)
       }
     }
   ]
@@ -103,6 +127,44 @@ let findSlideArr = [
   },
   {
     id: 3,
+    path: 'roleManage',
+    icon: 'compose',
+    component: resolve => {
+      require(['@/views/html/system/role.vue'], resolve)
+    }
+  },
+  {
+    id:4,
+    path: '/system',
+    icon: 'person-stalker',
+    component: Main
+  },
+  {
+    id:5,
+    path: 'anli',
+    icon: 'compose',
+    component: resolve => {
+      require(['@/views/content/anli.vue'], resolve)
+    }
+  },
+  {
+    id:7,
+    path: 'roleManage',
+    icon: 'compose',
+    component: resolve => {
+      require(['@/views/html/system/role.vue'], resolve)
+    }
+  },
+  {
+    id:8,
+    path: 'roleManage',
+    icon: 'compose',
+    component: resolve => {
+      require(['@/views/html/system/role.vue'], resolve)
+    }
+  },
+  {
+    id:9,
     path: 'roleManage',
     icon: 'compose',
     component: resolve => {

@@ -46,30 +46,31 @@ export default {
         newPassword:  { required: true, message: '不能为空', trigger: 'change' }
       },
       column_frist: [
+         {
+          title: '用户id',
+          key: 'user_id'
+        },
         {
           title: '用户名',
           key: 'username'
-        },
-        {
-          title: '所在部门',
-          key: 'departmentName'
-        },
-        {
-          title: '拥有权限',
-          key: 'role'
-        },
-        {
-          title: '电话号码',
-          key: 'mobilePhone'
         },
         {
           title: '邮箱',
           key: 'email'
         },
         {
-          title: 'QQ',
-          key: 'qq'
+          title: '性别',
+          key: 'sex'
         },
+        {
+          title: '电话号码',
+          key: 'mobile'
+        },
+        {
+          title: '创建时间',
+          key: 'create_time'
+        },
+       
         {
 
           title: '操作',
@@ -118,8 +119,8 @@ export default {
   },
   created() {
     let personalInfo =  JSON.parse(Cookies.get('userInfo'));
-    this.userPW.id = personalInfo.id;
-    employeeDetail({ id: personalInfo.id })
+    this.userPW.id = personalInfo.user_id;
+    employeeDetail({ id: personalInfo.user_id })
     .then( res => {
       if(!res.code) {
         this.userpage = [res.data];
