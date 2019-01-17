@@ -26,7 +26,7 @@ module.exports = merge(webpackBaseConfig, {
     // publicPath: 'http://admin.caymanex.pro/dist/', // caymanex线上
     // publicPath: 'http://admin.paibi.wxmarket.cn/dist/', // zjw
 
-    publicPath: '/dist/', //114 test
+    publicPath: '/admin/dist/', //114 test
 
 
     filename: '[name].[hash].js',

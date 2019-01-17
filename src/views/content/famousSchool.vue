@@ -101,16 +101,10 @@ export default {
                   },
                   on: {
                     click: () => {
-                      const route = {
-                        name: "schooldetail",
-                        query: {
-                          id
-                        },
-                        meta: {
-                          title: `参数-${id}`
-                        }
-                      };
-                      this.$router.push(route);
+                      this.$router.push({
+                        path: "/argu-page/schooldetail",
+                        query: { id: id }
+                      });
                     }
                   }
                 },
@@ -141,18 +135,11 @@ export default {
       });
       this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
     },
-    add() {
-      let id = -1;
-      const route = {
-        name: "schooldetail",
-        query: {
-          id
-        },
-        meta: {
-          title: `参数-${id}`
-        }
-      };
-      this.$router.push(route);
+     add() {
+      this.$router.push({
+        path: "/package.jsonargu-page/schooldetail",
+        query: { id: -1 }
+      });
     },
 
     changePage(pageIndex) {

@@ -17,16 +17,12 @@
         <FormItem label="文章关键词">
             <Input v-model="formItem.keywords" placeholder="请输入文章关键词..."/>
         </FormItem> 
-        <!-- <FormItem label="语言切换">
-            <RadioGroup v-model="formItem.language">
-                <Radio label="zh">中文</Radio>
-                <Radio label="en">英文</Radio>
-                <Radio label="cs">捷克语</Radio>
-                <Radio label="fr">法语</Radio>
-            </RadioGroup>
-        </FormItem>    -->
-    <editor ref="editor" :value="content" @on-change="handleChange"/>
-    <!-- <button @click="changeContent">修改编辑器内容</button> -->
+   <div id="Test" style="background-color:#fff">
+      <quill-editor ref="myTextEditor"
+                v-model="content" :options="quillOption"  style="height:500px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+        @change="onEditorChange($event)">
+      </quill-editor>
+    </div>
         <FormItem>
             <Button type="primary"   @click="sure">保存</Button>
             <Button style="margin-left: 8px">取消</Button>
@@ -36,18 +32,19 @@
   </div>
 </template>
 <script>
+import { quillEditor } from "vue-quill-editor";
+import quillConfig from "../../libs/quill-config.js";
 import {
   BASICURL,
   companydetail,
   companyupdate,
   companyadd
 } from "@/service/getData";
-import Editor from "_c/editor";
 import { mapMutations } from "vuex";
 export default {
   name: "Companydetail",
   components: {
-    Editor
+    quillEditor
   },
   data() {
     return {
@@ -57,7 +54,8 @@ export default {
         type: "1"
       },
       content: "",
-      article: ""
+      article: "",
+      quillOption: quillConfig
     };
   },
   created() {
@@ -68,8 +66,16 @@ export default {
     }
   },
   methods: {
+    onEditorBlur() {
+      //失去焦点事件
+    },
+    onEditorFocus() {
+      //获得焦点事件
+    },
+    onEditorChange(value) {
+      //内容改变事件
+    },
     getblank() {
-      this.$refs.editor.setHtml("");
       this.formItem.keywords = "";
       this.formItem.type = "1";
       this.content = "";
@@ -77,23 +83,16 @@ export default {
     },
     getData(params) {
       companydetail(params).then(res => {
-        // this.formItem.language = res.data[0].language;
         this.formItem.keywords = res.data[0].keywords;
         this.formItem.type = res.data[0].type;
         this.content = this.article = res.data[0].content;
-        this.$refs.editor.setHtml(this.content);
       });
     },
-    handleChange(html, text) {
-      this.article = html;
-    },
     sure() {
-      let params = [];
-      // params["language"] = this.formItem.language;
+      let params = {};
       params["type"] = this.formItem.type;
       params["content"] = this.content;
       params["keywords"] = this.formItem.keywords;
-
       if (this.$route.query.id != -1) {
         params["Id"] = this.$route.query.id;
         params["content"] = this.article;
@@ -115,10 +114,6 @@ export default {
         });
       }
     }
-
-    // changeContent () {
-    //   this.$refs.editor.setHtml('<p>powered by wangeditor</p>')
-    // }
   }
 };
 </script>

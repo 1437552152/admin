@@ -33,11 +33,10 @@ export default {
               text = "企业文化";
             } else if (params.row.type == "3") {
               text = "企业环境";
-            } 
-            // else if (params.row.type == "4") {
-            //   text = "隐私说明";
-            // }
-             else if (params.row.type == "4") {
+            } else if (params.row.type == "4") {
+              // else if (params.row.type == "4") {
+              //   text = "隐私说明";
+              // }
               text = "联系我们";
             }
             return h("div", text);
@@ -87,16 +86,10 @@ export default {
                   },
                   on: {
                     click: () => {
-                      const route = {
-                        name: "Companydetail",
-                        query: {
-                          id
-                        },
-                        meta: {
-                          title: `参数-${id}`
-                        }
-                      };
-                      this.$router.push(route);
+                      this.$router.push({
+                        path: "/argu-page/companydetail",
+                        query: { id: id }
+                      });
                     }
                   }
                 },
@@ -128,17 +121,10 @@ export default {
       this.getData();
     },
     add() {
-      let id = -1;
-      const route = {
-        name: "Companydetail",
-        query: {
-          id
-        },
-        meta: {
-          title: `参数-${id}`
-        }
-      };
-      this.$router.push(route);
+      this.$router.push({
+        path: "/argu-page/companydetail",
+        query: { id: -1 }
+      });
     },
     getData() {
       companylist().then(res => {

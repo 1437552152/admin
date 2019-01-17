@@ -27,11 +27,45 @@ export default {
         },
         {
           title: "描述",
-          key: "des"
+          key: "des",
+           render: (h, params) => {
+            return h("div", [
+              h(
+                "span",
+                {
+                  style: {
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    webkitBoxOrient: "vertical",
+                    webkitLineClamp: 3
+                  }
+                },
+                params.row.des
+              )
+            ]);
+          }
         },
         {
           title: "标题",
-          key: "title"
+          key: "title",
+            render: (h, params) => {
+            return h("div", [
+              h(
+                "span",
+                {
+                  style: {
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    webkitBoxOrient: "vertical",
+                    webkitLineClamp: 3
+                  }
+                },
+                params.row.title
+              )
+            ]);
+          }
         },
         {
           title: "发布时间",
@@ -126,16 +160,10 @@ export default {
                   },
                   on: {
                     click: () => {
-                      const route = {
-                        name: "articledetail",
-                        query: {
-                          id
-                        },
-                        meta: {
-                          title: `参数-${id}`
-                        }
-                      };
-                      this.$router.push(route);
+                       this.$router.push({
+                        path: "/argu-page/articledetail",
+                        query: { id: id }
+                      });
                     }
                   }
                 },
@@ -166,20 +194,12 @@ export default {
       });
       this.getData({ pageNo: this.currentPageIdx, pageSize: 10 });
     },
-    add() {
-      let id = -1;
-      const route = {
-        name: "articledetail",
-        query: {
-          id
-        },
-        meta: {
-          title: `参数-${id}`
-        }
-      };
-      this.$router.push(route);
+     add() {
+      this.$router.push({
+        path: "/argu-page/articledetail",
+        query: { id: -1 }
+      });
     },
-
     changePage(pageIndex) {
       this.currentPageIdx = pageIndex;
       let obj = {

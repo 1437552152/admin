@@ -128,10 +128,10 @@ export default {
       UPModal: false,
       // showModal:false,
       uploadUrl: BASICURL + "admin/upload",
-      logo: require("../../assets/images/talkingdata.png"),
-      pic1: require("../../assets/images/talkingdata.png"),
-      pic2: require("../../assets/images/talkingdata.png"),
-      pic3: require("../../assets/images/talkingdata.png"),
+      logo: "",
+      pic1: "",
+      pic2:  "",
+      pic3:  "",
       formItem: {
         country: "",
         typeid: "zo"
@@ -328,10 +328,10 @@ export default {
     // 模态框的出现与隐藏
     add() {
       this.addModal = true;
-      this.logo = require("../../assets/images/talkingdata.png");
-      this.pic1 = require("../../assets/images/talkingdata.png");
-      this.pic2 = require("../../assets/images/talkingdata.png");
-      this.pic3 = require("../../assets/images/talkingdata.png");
+      this.logo = "";
+      this.pic1 = "";
+      this.pic2 = "";
+      this.pic3 = "";
       this.formItem.typeid = "zo";
       this.formItem.country = "";
     },

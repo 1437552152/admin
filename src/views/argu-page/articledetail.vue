@@ -33,8 +33,12 @@
             <div class="clearfix"></div>
         </div>
          <div class="clearfix"></div>
-    <editor ref="editor" :value="content" @on-change="handleChange"/>
-    <!-- <button @click="changeContent">修改编辑器内容</button> -->
+   <div id="Test" style="background-color:#fff">
+      <quill-editor ref="myTextEditor"
+                v-model="content" :options="quillOption"  style="height:500px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+        @change="onEditorChange($event)">
+      </quill-editor>
+    </div>
         <FormItem>
             <Button type="primary"   @click="sure">保存</Button>
             <Button style="margin-left: 8px">删除</Button>
@@ -51,17 +55,17 @@ import {
   newsadd,
   country
 } from "@/service/getData";
-import Editor from "_c/editor";
-import { mapMutations } from "vuex";
+import { quillEditor } from "vue-quill-editor";
+import quillConfig from "../../libs/quill-config.js";
 export default {
   name: "articledetail",
   components: {
-    Editor
+    quillEditor
   },
   data() {
     return {
       uploadUrl: BASICURL + "admin/upload",
-      pic: require("../../assets/images/talkingdata.png"),
+      pic: "",
       countrydata: null,
       formItem: {
         title: "",
@@ -72,7 +76,8 @@ export default {
         newstype: "0"
       },
       content: "",
-      article: ""
+      article: "",
+      quillOption: quillConfig
     };
   },
   created() {
@@ -84,7 +89,15 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["closeTag"]),
+    onEditorBlur() {
+      //失去焦点事件
+    },
+    onEditorFocus() {
+      //获得焦点事件
+    },
+    onEditorChange(value) {
+      //内容改变事件
+    },
     aliHandleSuccess(res, file) {
       this.pic = BASICURL + res.ret_code;
     },
@@ -95,7 +108,6 @@ export default {
       });
     },
     getblank() {
-      this.$refs.editor.setHtml("");
       this.formItem.title = "";
       this.formItem.author = "";
       this.formItem.des = "";
@@ -115,7 +127,6 @@ export default {
         this.formItem.newstype = res.data[0].newstype;
         this.pic = res.data[0].focusPic;
         this.content = this.article = res.data[0].content;
-        this.$refs.editor.setHtml(this.content);
       });
     },
     handleChange(html, text) {
@@ -135,9 +146,6 @@ export default {
       if (this.$route.query.id != -1) {
         params["content"] = this.article;
         newsUpdate(params).then(res => {
-          this.closeTag({
-            name: "articledetail"
-          });
           if (res.status == 200) {
             this.$Message.success("修改成功");
           } else {
@@ -158,10 +166,6 @@ export default {
         });
       }
     }
-
-    // changeContent () {
-    //   this.$refs.editor.setHtml('<p>powered by wangeditor</p>')
-    // }
   }
 };
 </script>

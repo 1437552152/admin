@@ -52,16 +52,21 @@
          <div class="clearfix"></div> 
     </Form>
   </div>
-  <div class="components-container" style="max-width:1300px;margin:0 auto">
-      <div class="editor-container">
-      <UE :defaultMsg="defaultMsg" :config=config :id="ue1" ref="ue"></UE>
+   <div id="Test" style="background-color:#fff">
+      <quill-editor ref="myTextEditor"
+                v-model="content" :options="quillOption"  style="height:500px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+        @change="onEditorChange($event)">
+      </quill-editor>
     </div>
-  </div>
+    <div  style="margin-top:60px;margin-bottom:50px">
       <Button type="primary"   @click="sure">保存</Button>
       <Button style="margin-left: 8px">删除</Button>
+    </div>
   </div>
 </template>
 <script>
+import { quillEditor } from "vue-quill-editor";
+import quillConfig from "../../libs/quill-config.js";
 import {
   BASICURL,
   teamdetail,
@@ -69,13 +74,15 @@ import {
   country,
   teamdeadd
 } from "@/service/getData";
-// import Editor from "_c/editor";
-import UE from "../../components/ue/ue.vue";
 export default {
   name: "teamdetail",
-  components: { UE },
+  components: {
+    quillEditor
+  },
   data() {
     return {
+      content: "",
+      quillOption: quillConfig,
       uploadUrl: BASICURL + "admin/upload",
       pic: require("../../images/talkingdata.png"),
       countrydata: null,
@@ -89,26 +96,27 @@ export default {
         school: "",
         introduceBriefly: "",
         languagelevel: ""
-      },
-      content: "",
-      defaultMsg: "",
-      config: {
-        initialFrameWidth: null,
-        initialFrameHeight: 350
-      },
-      ue1: "ue1"
+      }
     };
   },
   created() {
     this.getCountry();
-    console.log(this.$route.query.id)
-    if (this.$route.query.id!= -1) {
+    if (this.$route.query.id != -1) {
       this.getData({ id: this.$route.query.id });
     } else {
       this.getblank();
     }
   },
   methods: {
+    onEditorBlur() {
+      //失去焦点事件
+    },
+    onEditorFocus() {
+      //获得焦点事件
+    },
+    onEditorChange(value) {
+      //内容改变事件
+    },
     aliHandleSuccess(res, file) {
       this.pic = BASICURL + res.ret_code;
     },
@@ -129,7 +137,7 @@ export default {
       this.formItem.languagelevel = "";
       this.formItem.introduceBriefly = "";
       this.pic = require("../../images/talkingdata.png");
-      this.defaultMsg="请输入内容..."
+      this.content = "请输入内容...";
     },
     getData(params) {
       teamdetail(params).then(res => {
@@ -143,11 +151,12 @@ export default {
         this.formItem.languagelevel = res.data[0].languagelevel;
         this.formItem.introduceBriefly = res.data[0].introduceBriefly;
         this.pic = res.data[0].pic;
-        this.defaultMsg = res.data[0].content;
+        this.content = res.data[0].content;
       });
     },
     sure() {
-      let params = [];
+      alert("1111");
+      let params = {};
       params["pic"] = this.pic;
       params["studentname"] = this.formItem.studentname;
       params["address"] = this.formItem.address;
@@ -158,10 +167,10 @@ export default {
       params["teachname"] = this.formItem.teachname;
       params["introduceBriefly"] = this.formItem.introduceBriefly;
       params["languagelevel"] = this.formItem.languagelevel;
-      params["content"] =this.$refs.ue.getUEContent();
+      params["content"] = this.content;
       params["Id"] = this.$route.query.id;
       if (this.$route.query.id != -1) {
-        params["content"] = this.$refs.ue.getUEContent();
+        params["content"] = this.content;
         teamdeupdate(params).then(res => {
           if (res.status == 200) {
             this.$Message.success("修改成功");
@@ -170,7 +179,7 @@ export default {
           }
         });
       } else {
-        params["content"] =this.$refs.ue.getUEContent();
+        params["content"] = this.content;
         teamdeadd(params).then(res => {
           if (res.status == 200) {
             this.$Message.success("增加成功");

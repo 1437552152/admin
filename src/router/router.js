@@ -75,7 +75,7 @@ export const otherRouter = {
     {
       path: 'user/personalCenter',
       title: '个人中心',
-      name: 'user:PersonalCenter',
+      name: 'PersonalCenter',
       component: resolve => {
         require(['@/views/user/PersonalCenter.vue'], resolve)
       }
@@ -89,19 +89,27 @@ export const otherRouter = {
       }
     },
     {
-      path: 'user/personalCenter',
+      path: 'argu-page/companydetail',
       title: '公司概况',
-      name: 'user:PersonalCenter',
+      name: 'companyprofile',
       component: resolve => {
-        require(['@/views/user/PersonalCenter.vue'], resolve)
+        require(['@/views/argu-page/companydetail.vue'], resolve)
       }
     },
     {
-      path: 'user/personalCenter',
-      title: '文章',
-      name: 'user:PersonalCenter',
+      path: 'argu-page/articledetail',
+      title: '文章详情',
+      name: 'articledetail',
       component: resolve => {
-        require(['@/views/user/PersonalCenter.vue'], resolve)
+        require(['@/views/argu-page/articledetail.vue'], resolve)
+      }
+    },
+    {
+      path: 'argu-page/schooldetail',
+      title: '国家详情',
+      name: 'schooldetail',
+      component: resolve => {
+        require(['@/views/argu-page/schooldetail.vue'], resolve)
       }
     }
   ]
@@ -117,6 +125,18 @@ let findSlideArr = [
     icon: 'person-stalker',
     component: Main
   },
+  {
+    id:4,
+    path: '/content',
+    icon: 'person-stalker',
+    component: Main
+  },
+  {
+    id:13,
+    path: '/country',
+    icon: 'person-stalker',
+    component: Main
+  }, 
   {
     id: 2,
     path: 'user-management',
@@ -134,12 +154,6 @@ let findSlideArr = [
     }
   },
   {
-    id:4,
-    path: '/system',
-    icon: 'person-stalker',
-    component: Main
-  },
-  {
     id:5,
     path: 'anli',
     icon: 'compose',
@@ -149,26 +163,42 @@ let findSlideArr = [
   },
   {
     id:7,
-    path: 'roleManage',
+    path: 'companyprofile',
     icon: 'compose',
     component: resolve => {
-      require(['@/views/html/system/role.vue'], resolve)
+      require(['@/views/content/companyprofile.vue'], resolve)
     }
   },
   {
     id:8,
-    path: 'roleManage',
+    path: 'article',
     icon: 'compose',
     component: resolve => {
-      require(['@/views/html/system/role.vue'], resolve)
+      require(['@/views/content/article.vue'], resolve)
     }
   },
   {
     id:9,
-    path: 'roleManage',
+    path: 'pricemeal',
     icon: 'compose',
     component: resolve => {
-      require(['@/views/html/system/role.vue'], resolve)
+      require(['@/views/content/pricemeal.vue'], resolve)
+    }
+  },
+  {
+    id:14,
+    path: 'famousSchool',
+    icon: 'compose',
+    component: resolve => {
+      require(['@/views/content/famousSchool.vue'], resolve)
+    }
+  },
+  {
+    id:15,
+    path: 'countryconfig',
+    icon: 'compose',
+    component: resolve => {
+      require(['@/views/content/countryconfig.vue'], resolve)
     }
   }
 ]

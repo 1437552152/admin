@@ -60,21 +60,22 @@ export default {
         {
           title: "简介",
           key: "introduceBriefly",
-           render: (h, params) => {
+          render: (h, params) => {
             return h("div", [
-                h(
-                  "span",
-                  {
-                    style: {
-                     overflow:"hidden",
-                     textOverflow:"ellipsis",
-                     display:"-webkit-box",
-                     webkitBoxOrient:"vertical",
-                     webkitLineClamp:3
-                    }
-                  },
-                  params.row.introduceBriefly
-                )])
+              h(
+                "span",
+                {
+                  style: {
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    webkitBoxOrient: "vertical",
+                    webkitLineClamp: 3
+                  }
+                },
+                params.row.introduceBriefly
+              )
+            ]);
           }
         },
         {
@@ -124,10 +125,10 @@ export default {
                     // disabled: authStatus === 0 ? false : true
                   },
                   on: {
-                    click: () => {                    
+                    click: () => {
                       this.$router.push({
-                        path:"/teamdetail",
-                        query:{id:id}
+                        path: "/teamdetail",
+                        query: { id: id }
                       });
                     }
                   }
@@ -161,9 +162,9 @@ export default {
     },
     add() {
       this.$router.push({
-                        path:"/teamdetail",
-                        query:{id:-1}
-                      });
+        path: "/teamdetail",
+        query: { id: -1 }
+      });
     },
     changePage(pageIndex) {
       this.currentPageIdx = pageIndex;

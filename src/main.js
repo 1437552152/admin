@@ -15,10 +15,13 @@ import Cookies from 'js-cookie';
 import Viser from 'viser-vue';
 import { setStore, getStore, removeStore } from "@/config/storage.js";
 import base from '@/libs/base'
-import '../static/UE/ueditor.config.js'
-import '../static/UE/ueditor.all.min.js'
-import '../static/UE/lang/zh-cn/zh-cn.js'
-import '../static/UE/ueditor.parse.min.js'
+// 文本编辑器的使用
+import VueQuillEditor from 'vue-quill-editor'
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor, /* { default global options } */ )
 Vue.prototype.$ajax = axios;
 //  axios.defaults.withCredentials = true;
   axios.interceptors.response.use((response) => {

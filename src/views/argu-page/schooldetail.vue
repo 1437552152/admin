@@ -25,8 +25,14 @@
             <div class="clearfix"></div>
         </div>
          <div class="clearfix"></div>
-    <editor ref="editor" :value="content" @on-change="handleChange"/>
-    <!-- <button @click="changeContent">修改编辑器内容</button> -->
+  
+      <div id="Test" style="background-color:#fff">
+          <quill-editor ref="myTextEditor"
+                    v-model="content" :options="quillOption"  style="height:500px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+            @change="onEditorChange($event)">
+          </quill-editor>
+        </div>
+
         <FormItem>
             <Button type="primary"   @click="sure">保存</Button>
             <Button style="margin-left: 8px">删除</Button>
@@ -43,17 +49,17 @@ import {
   schoolAdd,
   country
 } from "@/service/getData";
-import Editor from "_c/editor";
-import { mapMutations } from "vuex";
+import { quillEditor } from "vue-quill-editor";
+import quillConfig from "../../libs/quill-config.js";
 export default {
   name: "schooldetail",
   components: {
-    Editor
+    quillEditor
   },
   data() {
     return {
       uploadUrl: BASICURL + "admin/upload",
-      pic: require("../../assets/images/talkingdata.png"),
+      pic:"",
       countrydata: null,
       formItem: {
         schoolName: "",
@@ -62,7 +68,8 @@ export default {
         acceptanceRate: ""
       },
       content: "",
-      article: ""
+      article: "",
+         quillOption: quillConfig,
     };
   },
   created() {
@@ -74,7 +81,15 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["closeTag"]),
+      onEditorBlur() {
+      //失去焦点事件
+    },
+    onEditorFocus() {
+      //获得焦点事件
+    },
+    onEditorChange(value) {
+      //内容改变事件
+    },
     aliHandleSuccess(res, file) {
       this.pic = BASICURL + res.ret_code;
     },
@@ -85,7 +100,6 @@ export default {
       });
     },
     getblank() {
-      this.$refs.editor.setHtml("");
       this.formItem.schoolName = "";
       this.formItem.des = "";
       this.formItem.acceptanceRate = "";
@@ -101,11 +115,7 @@ export default {
         this.formItem.acceptanceRate = res.data[0].acceptanceRate;
         this.pic = res.data[0].logo;
         this.content = this.article = res.data[0].content;
-        this.$refs.editor.setHtml(this.content);
       });
-    },
-    handleChange(html, text) {
-      this.article = html;
     },
     sure() {
       let params = [];
@@ -118,10 +128,7 @@ export default {
       params["Id"] = this.$route.query.id;
       if (this.$route.query.id != -1) {
         params["content"] = this.article;
-        schoolUpdate(params).then(res => {
-          this.closeTag({
-            name: "articledetail"
-          });
+        schoolUpdate(params).then(res => {       
           if (res.status == 200) {
             this.$Message.success("修改成功");
           } else {
@@ -131,9 +138,6 @@ export default {
       } else {
         params["content"] = this.article;
         schoolAdd(params).then(res => {
-          this.closeTag({
-            name: "articledetail"
-          });
           if (res.status == 200) {
             this.$Message.success("增加成功");
           } else {
