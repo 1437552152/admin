@@ -26,17 +26,17 @@
         </div>
          <div class="clearfix"></div>
   
-      <div id="Test" style="background-color:#fff">
+      <div id="Test">
           <quill-editor ref="myTextEditor"
-                    v-model="content" :options="quillOption"  style="height:500px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+                    v-model="content" :options="quillOption"  style="height:300px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
             @change="onEditorChange($event)">
           </quill-editor>
         </div>
 
-        <FormItem>
+        <div  style="margin-top:100px">
             <Button type="primary"   @click="sure">保存</Button>
             <Button style="margin-left: 8px">删除</Button>
-        </FormItem>
+        </div>
     </Form>
   </div>
   </div>
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       uploadUrl: BASICURL + "admin/upload",
-      pic:"",
+      pic:"http://hbimg.b0.upaiyun.com/69ad7a731f43d4b8729f1a2fbe65c43801ca0f033250-EV1vMf_fw658",
       countrydata: null,
       formItem: {
         schoolName: "",

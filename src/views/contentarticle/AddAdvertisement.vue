@@ -394,7 +394,6 @@ export default {
       this.$Message.error("上传失败");
     },
     // changeAdStatus() {
-    //   // alert(this.adStatus);
     // },
     refreshPageManual() {
       this.ifLoading = true;

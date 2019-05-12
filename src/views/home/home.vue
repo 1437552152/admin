@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-	<h5>智慧校园管理平台系统</h5>
+	<h5>捷航教育管理平台系统</h5>
 	</div>
 </template>
 

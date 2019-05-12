@@ -52,13 +52,13 @@
          <div class="clearfix"></div> 
     </Form>
   </div>
-   <div id="Test" style="background-color:#fff">
+   <div id="Test">
       <quill-editor ref="myTextEditor"
-                v-model="content" :options="quillOption"  style="height:500px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+                v-model="content" :options="quillOption"  style="height:300px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
         @change="onEditorChange($event)">
       </quill-editor>
     </div>
-    <div  style="margin-top:60px;margin-bottom:50px">
+    <div style="margin-top:100px">
       <Button type="primary"   @click="sure">保存</Button>
       <Button style="margin-left: 8px">删除</Button>
     </div>
@@ -84,7 +84,7 @@ export default {
       content: "",
       quillOption: quillConfig,
       uploadUrl: BASICURL + "admin/upload",
-      pic: require("../../images/talkingdata.png"),
+      pic:"http://hbimg.b0.upaiyun.com/69ad7a731f43d4b8729f1a2fbe65c43801ca0f033250-EV1vMf_fw658",
       countrydata: null,
       formItem: {
         studentname: "",
@@ -116,6 +116,7 @@ export default {
     },
     onEditorChange(value) {
       //内容改变事件
+      console.log("value===>",value)
     },
     aliHandleSuccess(res, file) {
       this.pic = BASICURL + res.ret_code;
@@ -155,7 +156,6 @@ export default {
       });
     },
     sure() {
-      alert("1111");
       let params = {};
       params["pic"] = this.pic;
       params["studentname"] = this.formItem.studentname;

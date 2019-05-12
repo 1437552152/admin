@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="header-avator-con">
-                    <full-screen v-model="isFullScreen" @on-change="fullscreenChange"></full-screen>
+                    <fullscreen v-model="isFullScreen" @on-change="fullscreenChange"></fullscreen>
                     <lock-screen></lock-screen>
                     <message-tip></message-tip>
                     <theme-switch></theme-switch>

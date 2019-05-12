@@ -114,8 +114,6 @@ const handlers = {
                     if (xhr.status === 200) {
                         var res = JSON.parse(xhr.responseText);
                         let length = self.quill.getSelection(true).index;
-
-                        alert(BASICURL + res.ret_code)
                         //这里很重要，你图片上传成功后，img的src需要在这里添加，res.path就是你服务器返回的图片链接。            
                         self.quill.insertEmbed(length, 'image', BASICURL + res.ret_code);
                         self.quill.setSelection(length + 1)

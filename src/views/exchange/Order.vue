@@ -307,7 +307,6 @@ export default {
 		},
     searchByFilter() {
 			let reg = /[^0-9]/;
-			// alert(this.memberId)
 			let bol = reg.test(this.memberId);
 			if(bol&&(!!this.memberId)) {
 				this.$Message.warning('请输入正确的id！')

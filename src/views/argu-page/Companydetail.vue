@@ -17,16 +17,16 @@
         <FormItem label="文章关键词">
             <Input v-model="formItem.keywords" placeholder="请输入文章关键词..."/>
         </FormItem> 
-   <div id="Test" style="background-color:#fff">
+   <div id="Test">
       <quill-editor ref="myTextEditor"
-                v-model="content" :options="quillOption"  style="height:500px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+                v-model="content" :options="quillOption"  style="height:300px"   @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
         @change="onEditorChange($event)">
       </quill-editor>
     </div>
-        <FormItem>
+        <div  style="margin-top:100px">
             <Button type="primary"   @click="sure">保存</Button>
             <Button style="margin-left: 8px">取消</Button>
-        </FormItem>
+        </div>
     </Form>
   </div>
   </div>
